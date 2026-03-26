@@ -45,28 +45,21 @@ export default function EmailCapture({ placement = "inline" }: EmailCaptureProps
     );
   }
 
-  const inputSize = placement === "footer" ? "h-11 text-sm" : "h-12 text-[15px]";
-  const buttonSize = placement === "footer" ? "h-11 text-sm px-5" : "h-12 text-[15px] px-6";
-
   return (
     <form onSubmit={handleSubmit}>
-      <div
-        className={`flex ${
-          placement === "footer" ? "flex-col sm:flex-row" : "flex-col sm:flex-row"
-        } gap-3`}
-      >
+      <div className="flex flex-col sm:flex-row gap-3">
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Your email address"
           required
-          className={`${inputSize} bg-white border border-border rounded-sm px-4 text-textPrimary placeholder:text-textSecondary/60 focus:outline-none focus:border-primary transition-colors flex-1`}
+          className="h-12 text-[16px] bg-white border border-border rounded-lg px-4 text-textPrimary placeholder:text-textSecondary/60 focus:outline-none focus:border-primary transition-colors w-full sm:flex-1"
         />
         <button
           type="submit"
           disabled={status === "loading"}
-          className={`${buttonSize} bg-textPrimary text-background font-bold rounded-sm hover:opacity-90 transition-opacity disabled:opacity-50 whitespace-nowrap`}
+          className="h-12 text-[15px] px-6 bg-textPrimary text-background font-bold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 whitespace-nowrap w-full sm:w-auto"
         >
           {status === "loading" ? (
             <span className="inline-block w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin" />

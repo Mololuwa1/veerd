@@ -21,9 +21,9 @@ export default function Footer() {
     <footer className="bg-background border-t border-border px-6 md:px-12 pt-12 pb-8">
       <div className="max-w-[1100px] mx-auto">
         {/* Top row: Brand + Links */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 mb-10">
           {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
+          <div className="col-span-1 sm:col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-2">
               <Image
                 src="/logo.png"
@@ -104,7 +104,7 @@ export default function Footer() {
           </div>
 
           {/* Newsletter - full width on mobile */}
-          <div id="footer-signup" className="col-span-2 md:col-span-1">
+          <div id="footer-signup" className="col-span-1 sm:col-span-2 md:col-span-1">
             <p className="text-xs font-bold uppercase text-textPrimary tracking-[0.5px] mb-4">
               Stay in the loop
             </p>
