@@ -13,11 +13,11 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://veerd.co"),
-  title: "Veerd — Talk to someone who has already made the leap",
+  title: "Veerd | Talk to someone who has already made the leap",
   description:
     "Meet the person who made the exact career change you are considering. Veerd matches you with real career changers for honest conversation and structured exploration.",
   openGraph: {
-    title: "Veerd — Talk to someone who has already made the leap",
+    title: "Veerd | Talk to someone who has already made the leap",
     description:
       "Meet the person who made the exact career change you are considering. Veerd matches you with real career changers for honest conversation and structured exploration.",
     url: "https://veerd.co",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Veerd — Talk to someone who has already made the leap",
+    title: "Veerd | Talk to someone who has already made the leap",
     description:
       "Meet the person who made the exact career change you are considering.",
   },

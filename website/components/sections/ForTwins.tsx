@@ -4,16 +4,16 @@ import { motion } from "framer-motion";
 import Button from "@/components/ui/Button";
 
 const benefits = [
-  "Earn £35 per call",
+  "Paid for your time",
   "Flexible schedule",
   "Build your profile",
   "Give back",
 ];
 
 const stats = [
-  { label: "Per call", value: "£35" },
+  { label: "Twins on the platform", value: "200+" },
   { label: "Your schedule", value: "Flexible" },
-  { label: "Average rating", value: "4.9" },
+  { label: "Average Twin rating", value: "4.9" },
 ];
 
 export default function ForTwins() {
@@ -33,8 +33,9 @@ export default function ForTwins() {
             You made the leap. Help someone else do the same.
           </h2>
           <p className="text-[17px] text-textSecondary leading-[1.65] mb-8">
-            Earn £35 per call sharing your honest experience with people who are
-            exactly where you were two or three years ago.
+            Share your honest career transition experience with someone who is
+            exactly where you were. Get paid for your time, set your own
+            schedule, and make a real difference.
           </p>
 
           <div className="grid grid-cols-2 gap-3 mb-8">
@@ -49,7 +50,7 @@ export default function ForTwins() {
           </div>
 
           <Button variant="primary" href="/for-twins" className="bg-primary text-white hover:opacity-90">
-            Apply to be a Twin
+            Learn more
           </Button>
           <p className="text-xs text-textSecondary mt-3">
             We review every application personally

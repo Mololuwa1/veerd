@@ -1,36 +1,60 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { sprintFeatures } from "@/constants/content";
 
-const days = [
+const sprintFeatures = [
+  "Daily tasks, videos, and real world challenges tailored to your path",
+  "A personalised skills gap map that updates as you grow",
+  "Transition Reports that track your progress over time",
+  "Honest reflection prompts that reveal what you actually want",
+  "New Sprint topics every month so you never stop exploring",
+];
+
+const sprints = [
   {
-    num: 7,
+    title: "Life as a UX Designer",
     status: "completed",
-    type: "Reflection",
-    typeColor: "text-primary bg-primaryLight",
-    title: "Week 1 check-in",
+    progress: 100,
+    tag: "Completed",
+    tagColor: "bg-primaryLight text-primary",
   },
   {
-    num: 8,
-    status: "today",
+    title: "Building a UX Portfolio",
+    status: "active",
+    progress: 40,
+    tag: "Day 12 of 30",
+    tagColor: "bg-secondaryLight text-secondary",
+  },
+  {
+    title: "Freelance vs Full-time in Design",
+    status: "upcoming",
+    progress: 0,
+    tag: "Up next",
+    tagColor: "bg-border/40 text-textSecondary",
+  },
+];
+
+const currentDays = [
+  {
+    num: 11,
+    status: "completed",
     type: "Skills",
+    typeColor: "text-primary bg-primaryLight",
+    title: "Portfolio feedback framework",
+  },
+  {
+    num: 12,
+    status: "today",
+    type: "Challenge",
     typeColor: "text-secondary bg-secondaryLight",
-    title: "Skills gap checker",
+    title: "Redesign a real product screen",
   },
   {
-    num: 9,
+    num: 13,
     status: "upcoming",
-    type: "Interview",
+    type: "Reflection",
     typeColor: "text-textSecondary bg-border/40",
-    title: "Informational interview guide",
-  },
-  {
-    num: 10,
-    status: "upcoming",
-    type: "Shadow",
-    typeColor: "text-textSecondary bg-border/40",
-    title: "Shadow day guidance",
+    title: "What kind of designer are you?",
   },
 ];
 
@@ -46,14 +70,16 @@ export default function SprintSection() {
           transition={{ duration: 0.5 }}
         >
           <p className="text-xs font-bold uppercase text-secondary tracking-[1px] mb-3">
-            30 day Sprints
+            Sprints
           </p>
-          <h2 className="text-[36px] font-bold text-textPrimary tracking-[-0.5px] max-w-[420px] mb-4">
-            Figure out if this is right for you — before you commit
+          <h2 className="text-[36px] font-bold text-textPrimary tracking-[-0.5px] max-w-[440px] mb-4">
+            Every month, a new Sprint. Every Sprint, real progress.
           </h2>
-          <p className="text-[17px] text-textSecondary leading-[1.65] mb-8">
-            30 days of structured daily guidance — 15 minutes per day — built
-            around the specific career transition you are exploring.
+          <p className="text-[17px] text-textSecondary leading-[1.65] mb-4">
+            Sprints are 30 day structured programmes that guide you through a specific part of your career transition, 15 minutes a day. Finish one and start the next. Explore a new direction, go deeper on the one you chose, or build the skills you need to land.
+          </p>
+          <p className="text-[15px] text-textSecondary leading-[1.65] mb-8">
+            This is not a one-off course. It is an ongoing journey that grows with you, month after month, until you are exactly where you want to be.
           </p>
 
           <div className="space-y-4 mb-8">
@@ -87,41 +113,114 @@ export default function SprintSection() {
               <p className="text-xs text-textSecondary">Daily commitment</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-textPrimary">
-                Less than £1
-              </p>
-              <p className="text-xs text-textSecondary">Cost per day</p>
+              <p className="text-2xl font-bold text-textPrimary">30+</p>
+              <p className="text-xs text-textSecondary">Sprint topics available</p>
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-textPrimary">Ongoing</p>
+              <p className="text-xs text-textSecondary">New Sprints every month</p>
             </div>
           </div>
         </motion.div>
 
-        {/* Right column — Sprint roadmap visual */}
+        {/* Right column - Sprint journey visual */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
+          className="space-y-4"
         >
-          <div className="bg-white rounded-xl shadow-card p-6">
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-sm font-bold text-textPrimary">
-                Your Sprint — Life as a UX Designer
-              </p>
-              <p className="text-xs text-textSecondary">Day 8 of 30</p>
-            </div>
-
-            <div className="h-1 bg-border rounded-full mb-6">
-              <div className="h-1 bg-primary rounded-full w-[27%]" />
-            </div>
-
+          {/* Sprint journey overview */}
+          <div className="bg-white rounded-xl shadow-card p-5">
+            <p className="text-xs font-bold uppercase text-textSecondary tracking-[0.5px] mb-4">
+              Your Sprint journey
+            </p>
             <div className="space-y-3">
-              {days.map((day) => (
+              {sprints.map((sprint, i) => (
                 <div
-                  key={day.num}
-                  className="flex items-center gap-3 py-2"
+                  key={sprint.title}
+                  className={`flex items-center gap-3 p-3 rounded-lg ${
+                    sprint.status === "active"
+                      ? "bg-secondaryLight/50 border border-secondary/20"
+                      : sprint.status === "completed"
+                      ? "bg-primaryLight/50"
+                      : "bg-border/10"
+                  }`}
                 >
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
+                    className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold ${
+                      sprint.status === "completed"
+                        ? "bg-primary text-white"
+                        : sprint.status === "active"
+                        ? "bg-secondary text-white"
+                        : "bg-border/40 text-textSecondary"
+                    }`}
+                  >
+                    {sprint.status === "completed" ? (
+                      <svg width="12" height="10" viewBox="0 0 10 8" fill="none">
+                        <path
+                          d="M1 4L3.5 6.5L9 1"
+                          stroke="white"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    ) : (
+                      i + 1
+                    )}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p
+                      className={`text-sm font-bold truncate ${
+                        sprint.status === "upcoming"
+                          ? "text-textSecondary"
+                          : "text-textPrimary"
+                      }`}
+                    >
+                      {sprint.title}
+                    </p>
+                    {sprint.status === "active" && (
+                      <div className="h-1 bg-border/40 rounded-full mt-1.5 w-full">
+                        <div
+                          className="h-1 bg-secondary rounded-full"
+                          style={{ width: `${sprint.progress}%` }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <span
+                    className={`text-[10px] font-bold px-2 py-0.5 rounded-full flex-shrink-0 ${sprint.tagColor}`}
+                  >
+                    {sprint.tag}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Current Sprint detail */}
+          <div className="bg-white rounded-xl shadow-card p-5">
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-sm font-bold text-textPrimary">
+                Building a UX Portfolio
+              </p>
+              <p className="text-xs text-textSecondary">Day 12 of 30</p>
+            </div>
+
+            <div className="h-1 bg-border rounded-full mb-5">
+              <div className="h-1 bg-secondary rounded-full w-[40%]" />
+            </div>
+
+            <div className="space-y-2.5">
+              {currentDays.map((day) => (
+                <div
+                  key={day.num}
+                  className="flex items-center gap-3 py-1.5"
+                >
+                  <div
+                    className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold flex-shrink-0 ${
                       day.status === "completed"
                         ? "bg-primary text-white"
                         : day.status === "today"
@@ -130,12 +229,7 @@ export default function SprintSection() {
                     }`}
                   >
                     {day.status === "completed" ? (
-                      <svg
-                        width="12"
-                        height="10"
-                        viewBox="0 0 10 8"
-                        fill="none"
-                      >
+                      <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
                         <path
                           d="M1 4L3.5 6.5L9 1"
                           stroke="white"
@@ -154,7 +248,7 @@ export default function SprintSection() {
                     {day.type}
                   </span>
                   <span
-                    className={`text-sm ${
+                    className={`text-[13px] ${
                       day.status === "upcoming"
                         ? "text-textSecondary"
                         : "text-textPrimary"
@@ -166,10 +260,15 @@ export default function SprintSection() {
               ))}
             </div>
 
-            <div className="flex items-center gap-2 mt-5 pt-4 border-t border-border/40">
-              <span className="w-2 h-2 rounded-full bg-secondary" />
-              <span className="text-xs font-bold text-secondary">
-                7 day streak
+            <div className="flex items-center justify-between mt-4 pt-3 border-t border-border/40">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-secondary" />
+                <span className="text-xs font-bold text-secondary">
+                  42 day streak
+                </span>
+              </div>
+              <span className="text-[10px] text-textSecondary">
+                2 Sprints completed
               </span>
             </div>
           </div>

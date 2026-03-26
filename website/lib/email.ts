@@ -10,9 +10,9 @@ export async function sendWelcomeEmail(email: string) {
     html: `
       <div style="font-family: 'Helvetica Neue', Arial, sans-serif; max-width: 520px; margin: 0 auto; padding: 40px 20px; color: #2C2C2C;">
         <p style="font-size: 16px; line-height: 1.6;">Thank you for your interest in Veerd.</p>
-        <p style="font-size: 16px; line-height: 1.6;">We are putting the finishing touches on the app. We will let you know the moment it is ready — and you will be among the first to get access.</p>
+        <p style="font-size: 16px; line-height: 1.6;">We are putting the finishing touches on the app. We will let you know the moment it is ready, and you will be among the first to get access.</p>
         <p style="font-size: 16px; line-height: 1.6;">In the meantime you can follow our journey on TikTok at <a href="https://tiktok.com/@veerd" style="color: #7D9E8C;">@veerd</a>.</p>
-        <p style="font-size: 14px; color: #7A7A72; margin-top: 32px;">— The Veerd team</p>
+        <p style="font-size: 14px; color: #7A7A72; margin-top: 32px;">- The Veerd team</p>
       </div>
     `,
   });
@@ -27,7 +27,7 @@ export async function sendTwinConfirmationEmail(email: string, name: string) {
       <div style="font-family: 'Helvetica Neue', Arial, sans-serif; max-width: 520px; margin: 0 auto; padding: 40px 20px; color: #2C2C2C;">
         <p style="font-size: 16px; line-height: 1.6;">Hi ${name},</p>
         <p style="font-size: 16px; line-height: 1.6;">Thank you for applying to be a Twin on Veerd. We review every application personally and will be in touch within 48 hours.</p>
-        <p style="font-size: 14px; color: #7A7A72; margin-top: 32px;">— The Veerd team</p>
+        <p style="font-size: 14px; color: #7A7A72; margin-top: 32px;">- The Veerd team</p>
       </div>
     `,
   });
@@ -45,7 +45,7 @@ export async function sendTwinApplicationNotification(application: {
 }) {
   await resend.emails.send({
     from: "Veerd <hello@veerd.co>",
-    to: "team@veerd.co",
+    to: "hello@veerd.co",
     subject: `New Twin Application: ${application.name}`,
     html: `
       <div style="font-family: 'Helvetica Neue', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px; color: #2C2C2C;">

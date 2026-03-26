@@ -24,6 +24,7 @@ export interface TwinStory {
   name: string;
   initial: string;
   avatarColor: string;
+  image?: string;
   from: string;
   to: string;
   transition: string;
@@ -32,6 +33,7 @@ export interface TwinStory {
 
 export interface PricingPlan {
   name: string;
+  description: string;
   monthlyPrice: number;
   annualPrice: number;
   features: string[];

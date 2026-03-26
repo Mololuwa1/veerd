@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { twinStories } from "@/constants/content";
 
@@ -26,12 +27,22 @@ export default function TwinStories() {
               className="bg-white/[0.06] border border-white/10 rounded-lg p-6"
             >
               <div className="flex items-center gap-3 mb-3">
-                <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center text-base font-bold text-white"
-                  style={{ backgroundColor: twin.avatarColor }}
-                >
-                  {twin.initial}
-                </div>
+                {twin.image ? (
+                  <Image
+                    src={twin.image}
+                    alt={twin.name}
+                    width={48}
+                    height={48}
+                    className="w-12 h-12 rounded-full object-cover object-top"
+                  />
+                ) : (
+                  <div
+                    className="w-12 h-12 rounded-full flex items-center justify-center text-base font-bold text-white"
+                    style={{ backgroundColor: twin.avatarColor }}
+                  >
+                    {twin.initial}
+                  </div>
+                )}
                 <div>
                   <p className="text-base font-bold text-background">
                     {twin.name}
@@ -56,7 +67,7 @@ export default function TwinStories() {
             href="/for-twins"
             className="text-[15px] font-bold text-primary hover:underline"
           >
-            Become a Twin and earn £35 per call →
+            Become a Twin →
           </Link>
         </div>
       </div>

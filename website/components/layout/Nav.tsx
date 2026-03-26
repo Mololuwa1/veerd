@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -40,11 +41,17 @@ export default function Nav() {
           : "bg-background border-b border-border/40"
       }`}
     >
-      <Link
-        href="/"
-        className="text-[22px] font-bold text-textPrimary tracking-[-0.5px]"
-      >
-        Veerd
+      <Link href="/" className="flex items-center gap-2">
+        <Image
+          src="/logo.png"
+          alt="Veerd"
+          width={40}
+          height={40}
+          className="rounded-[8px]"
+        />
+        <span className="text-[22px] font-bold text-textPrimary tracking-[-0.5px]">
+          Veerd
+        </span>
       </Link>
 
       {/* Desktop nav */}
@@ -58,12 +65,16 @@ export default function Nav() {
             {link.label}
           </Link>
         ))}
-        <Link
-          href="#"
-          className="text-sm font-bold text-background bg-textPrimary px-5 py-2.5 rounded-sm hover:opacity-90 transition-opacity"
+        <a
+          href="#footer-signup"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
+          }}
+          className="text-sm font-bold text-background bg-textPrimary px-5 py-2.5 rounded-sm hover:opacity-90 transition-opacity cursor-pointer"
         >
-          Download the app
-        </Link>
+          Get early access
+        </a>
       </div>
 
       {/* Mobile hamburger */}
@@ -109,13 +120,19 @@ export default function Nav() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="#"
-              onClick={() => setMenuOpen(false)}
-              className="text-base font-bold text-background bg-textPrimary px-8 py-3 rounded-sm"
+            <a
+              href="#footer-signup"
+              onClick={(e) => {
+                e.preventDefault();
+                setMenuOpen(false);
+                setTimeout(() => {
+                  document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
+                }, 300);
+              }}
+              className="text-base font-bold text-background bg-textPrimary px-8 py-3 rounded-sm cursor-pointer"
             >
-              Download the app
-            </Link>
+              Get early access
+            </a>
           </motion.div>
         )}
       </AnimatePresence>

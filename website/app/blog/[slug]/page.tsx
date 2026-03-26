@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return {};
 
   return {
-    title: `${post.title} — Veerd`,
+    title: `${post.title} | Veerd`,
     description: post.metaDescription,
     openGraph: {
       title: post.title,

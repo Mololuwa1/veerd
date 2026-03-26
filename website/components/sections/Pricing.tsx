@@ -15,11 +15,11 @@ export default function Pricing() {
             Pricing
           </p>
           <h2 className="text-[36px] font-bold text-textPrimary tracking-[-0.5px] mb-3">
-            One month. Real progress.
+            Your transition, your pace
           </h2>
           <p className="text-[17px] text-textSecondary leading-[1.65] max-w-[520px] mx-auto mb-8">
-            Two plans built around where you are in your transition. Cancel
-            anytime — no questions asked.
+            Start with the plan that fits where you are right now. Upgrade,
+            downgrade, or cancel whenever you need to. No lock-ins, no pressure.
           </p>
 
           {/* Billing toggle */}
@@ -51,96 +51,119 @@ export default function Pricing() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-[700px] mx-auto">
-          {pricingPlans.map((plan) => (
-            <motion.div
-              key={plan.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className={`bg-white rounded-xl p-7 relative ${
-                plan.popular
-                  ? "border-2 border-primary"
-                  : "border-[1.5px] border-border"
-              }`}
-            >
-              {plan.popular && (
-                <span className="absolute -top-3 left-7 text-[11px] font-bold text-primary bg-primaryLight px-3 py-1 rounded-full">
-                  Most popular
-                </span>
-              )}
-
-              <h3 className="text-xl font-bold text-textPrimary mb-3">
-                {plan.name}
-              </h3>
-
-              <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-[36px] font-bold text-textPrimary tracking-[-1px]">
-                  £{annual ? plan.annualPrice : plan.monthlyPrice}
-                </span>
-                <span className="text-sm text-textSecondary">/month</span>
-              </div>
-
-              <div className="flex items-center gap-2 mb-5">
-                <p className="text-xs text-textSecondary">
-                  {annual
-                    ? `Billed annually at £${plan.annualPrice * 12} — save £${
-                        (plan.monthlyPrice - plan.annualPrice) * 12
-                      }`
-                    : "Billed monthly — cancel anytime"}
-                </p>
-                {annual && (
-                  <span className="text-[10px] font-bold text-primary bg-primaryLight px-2 py-0.5 rounded-full">
-                    Save £{(plan.monthlyPrice - plan.annualPrice) * 12}/yr
-                  </span>
-                )}
-              </div>
-
-              <hr className="border-border mb-5" />
-
-              <ul className="space-y-3 mb-6">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-primaryLight flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg
-                        width="10"
-                        height="8"
-                        viewBox="0 0 10 8"
-                        fill="none"
-                      >
-                        <path
-                          d="M1 4L3.5 6.5L9 1"
-                          stroke="#7D9E8C"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-textSecondary">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <button
-                className={`w-full py-3 rounded-[10px] text-[15px] font-bold transition-all ${
-                  plan.buttonVariant === "primary"
-                    ? "bg-textPrimary text-background hover:opacity-90"
-                    : "bg-transparent text-textSecondary border-[1.5px] border-border hover:border-textSecondary"
+          {pricingPlans.map((plan) => {
+            const savings = (plan.monthlyPrice - plan.annualPrice) * 12;
+            return (
+              <motion.div
+                key={plan.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className={`bg-white rounded-xl p-7 relative flex flex-col ${
+                  plan.popular
+                    ? "border-2 border-primary"
+                    : "border-[1.5px] border-border"
                 }`}
               >
-                {plan.buttonText}
-              </button>
-            </motion.div>
-          ))}
+                {plan.popular && (
+                  <span className="absolute -top-3 left-7 text-[11px] font-bold text-primary bg-primaryLight px-3 py-1 rounded-full">
+                    Most popular
+                  </span>
+                )}
+
+                <h3 className="text-xl font-bold text-textPrimary mb-1">
+                  {plan.name}
+                </h3>
+                <p className="text-[13px] text-textSecondary leading-[1.5] mb-4">
+                  {plan.description}
+                </p>
+
+                <div className="flex items-baseline gap-1 mb-1">
+                  <span className="text-[36px] font-bold text-textPrimary tracking-[-1px]">
+                    £{annual ? plan.annualPrice : plan.monthlyPrice}
+                  </span>
+                  <span className="text-sm text-textSecondary">/month</span>
+                </div>
+
+                <div className="flex items-center gap-2 mb-5">
+                  <p className="text-xs text-textSecondary">
+                    {annual
+                      ? `Billed annually at £${plan.annualPrice * 12}`
+                      : "Billed monthly, cancel anytime"}
+                  </p>
+                  {annual && (
+                    <span className="text-[10px] font-bold text-primary bg-primaryLight px-2 py-0.5 rounded-full">
+                      Save £{savings}/yr
+                    </span>
+                  )}
+                </div>
+
+                <hr className="border-border mb-5" />
+
+                <ul className="space-y-3 mb-6 flex-1">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-primaryLight flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <svg
+                          width="10"
+                          height="8"
+                          viewBox="0 0 10 8"
+                          fill="none"
+                        >
+                          <path
+                            d="M1 4L3.5 6.5L9 1"
+                            stroke="#7D9E8C"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-sm text-textSecondary">
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                <button
+                  className={`w-full py-3.5 rounded-[10px] text-[15px] font-bold transition-all ${
+                    plan.buttonVariant === "primary"
+                      ? "bg-textPrimary text-background hover:bg-[#3D3D3D]"
+                      : "bg-transparent text-textSecondary border-[1.5px] border-border hover:border-[#C4B49E]"
+                  }`}
+                >
+                  {plan.buttonText}
+                </button>
+
+                {plan.popular && (
+                  <p className="text-[11px] text-textSecondary text-center mt-3">
+                    Most people start here
+                  </p>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* One-time option */}
-        <p className="text-center text-sm text-textSecondary mt-8">
-          Prefer one conversation?{" "}
-          <span className="font-bold text-textPrimary">
-            Sprint Package — £149 one-time, no subscription.
-          </span>
-        </p>
+        {/* Social proof nudge */}
+        <div className="flex items-center justify-center gap-3 mt-10">
+          <div className="flex -space-x-2">
+            {["#D4C5B2", "#C8B99A", "#BFB094"].map((color, i) => (
+              <div
+                key={i}
+                className="w-6 h-6 rounded-full border-2 border-background flex items-center justify-center text-[9px] font-bold text-white"
+                style={{ backgroundColor: color }}
+              >
+                {["S", "J", "M"][i]}
+              </div>
+            ))}
+          </div>
+          <p className="text-[13px] text-textSecondary">
+            <span className="font-bold text-textPrimary">73% of users</span>{" "}
+            choose Navigator
+          </p>
+        </div>
 
         {/* Trust signals */}
         <div className="flex flex-wrap items-center justify-center gap-8 mt-8">
@@ -161,7 +184,7 @@ export default function Pricing() {
                 strokeWidth="1.2"
               />
             </svg>
-            Secure payment via Apple
+            Secure payment
           </div>
           <div className="flex items-center gap-2 text-xs text-textSecondary">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -177,25 +200,21 @@ export default function Pricing() {
                 strokeLinecap="round"
               />
             </svg>
-            Cancel anytime
+            Cancel or switch plans anytime
           </div>
           <div className="flex items-center gap-2 text-xs text-textSecondary">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path
-                d="M7 1L2 3v4c0 3.5 2.5 5.5 5 6.5 2.5-1 5-3 5-6.5V3L7 1z"
-                stroke="#7A7A72"
-                strokeWidth="1.2"
-                strokeLinejoin="round"
-              />
+              <circle cx="7" cy="7" r="5.5" stroke="#7A7A72" strokeWidth="1.2" />
+              <path d="M7 4v3.5l2.5 1.5" stroke="#7A7A72" strokeWidth="1.2" strokeLinecap="round" />
             </svg>
-            7 day money back guarantee
+            Start your first Sprint in under 5 minutes
           </div>
         </div>
 
         {/* Fine print */}
         <p className="text-xs text-textSecondary text-center mt-6 max-w-[480px] mx-auto">
           Subscriptions auto-renew at the end of each billing period. Cancel
-          anytime in your Apple ID settings before renewal to avoid being
+          anytime in your account settings before renewal to avoid being
           charged.
         </p>
       </div>

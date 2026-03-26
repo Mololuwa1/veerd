@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import EmailCapture from "@/components/ui/EmailCapture";
 
 const productLinks = [
@@ -22,7 +23,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
           {/* Brand */}
           <div>
-            <p className="text-xl font-bold text-textPrimary mb-2">Veerd</p>
+            <div className="flex items-center gap-2 mb-2">
+              <Image
+                src="/logo.png"
+                alt="Veerd"
+                width={56}
+                height={56}
+                className="rounded-[10px]"
+              />
+              <p className="text-xl font-bold text-textPrimary">Veerd</p>
+            </div>
             <p className="text-[13px] text-textSecondary leading-[1.6] mb-4">
               Talk to someone who has already made the leap
             </p>
@@ -93,7 +103,7 @@ export default function Footer() {
           </div>
 
           {/* Newsletter */}
-          <div>
+          <div id="footer-signup">
             <p className="text-xs font-bold uppercase text-textPrimary tracking-[0.5px] mb-4">
               Stay in the loop
             </p>
@@ -108,7 +118,7 @@ export default function Footer() {
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-xs text-textSecondary">
-            &copy; 2025 Veerd. All rights reserved.
+            &copy; 2026 Veerd. All rights reserved.
           </p>
           <div className="flex gap-4">
             <Link

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { blogPosts } from "@/constants/blogPosts";
 
 export const metadata: Metadata = {
-  title: "Blog — Veerd",
+  title: "Blog | Veerd",
   description:
     "Honest writing about career transitions, the people who make them, and what nobody tells you about changing careers.",
 };

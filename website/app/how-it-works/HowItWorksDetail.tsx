@@ -7,12 +7,12 @@ const journeySteps = [
   {
     title: "Complete your intake",
     description:
-      "Answer six honest questions about where you are right now, what you are considering, and what is holding you back. There are no wrong answers — we read every word and use your responses to find the right Twin.",
+      "Answer six honest questions about where you are right now, what you are considering, and what is holding you back. There are no wrong answers. We read every word and use your responses to find the right Twin.",
   },
   {
     title: "Get matched with your Twin",
     description:
-      "Within 24 hours we hand-pick someone who has made the exact transition you are exploring. Not an algorithm — a real human reads your intake and selects the person whose story is closest to yours.",
+      "Within 12 hours you get matched with someone who has made the exact transition you are exploring. Every match is based on your story, your goals, and the transition that fits.",
   },
   {
     title: "See your Twin's profile",
@@ -22,7 +22,7 @@ const journeySteps = [
   {
     title: "Start your Sprint",
     description:
-      "Begin 30 days of structured daily exploration — 15 minutes per day. Daily tasks, videos, reflection prompts, and real world challenges designed around your specific transition.",
+      "Your first Sprint gives you 30 days of guided exploration, just 15 minutes a day. But this is not a one-off programme. Each month you can start a new Sprint exploring a different path, building on what you have learned, and going deeper into the transition that feels right.",
   },
   {
     title: "Have your Twin call",
@@ -39,7 +39,7 @@ const sprintWeeks = [
       "Why am I considering this?",
       "Values mapping exercise",
       "Day in the life research",
-      "Skills audit — what transfers",
+      "Skills audit: what transfers",
       "First reflection checkpoint",
     ],
   },
@@ -50,7 +50,7 @@ const sprintWeeks = [
       "Skills gap checker tool",
       "Learning path research",
       "Informational interview prep",
-      "Real world challenge — shadow or observe",
+      "Real world challenge: shadow or observe",
       "Second reflection checkpoint",
     ],
   },
@@ -90,7 +90,7 @@ const twinCallDetails = [
   {
     title: "What a Twin call is not",
     items: [
-      "Not coaching or career advice — your Twin is a peer, not a professional",
+      "Not coaching or career advice. Your Twin is a peer, not a professional",
       "Not a job interview or networking event",
       "Not a sales pitch for any course, programme, or credential",
     ],
@@ -100,7 +100,7 @@ const twinCallDetails = [
     items: [
       "Complete your Sprint activities up to the call date",
       "Write down your three biggest questions or fears",
-      "Be honest about where you are — your Twin was once exactly there",
+      "Be honest about where you are. Your Twin was once exactly there",
     ],
   },
 ];
@@ -115,7 +115,7 @@ export default function HowItWorksDetail() {
             How Veerd works
           </p>
           <h1 className="text-[40px] md:text-[48px] font-bold text-textPrimary tracking-[-1px] leading-[1.15] mb-5">
-            From wondering to knowing — in 30 days
+            From wondering to knowing, in 30 days
           </h1>
           <p className="text-[17px] text-textSecondary leading-[1.65] max-w-[520px] mx-auto">
             Here is exactly what happens when you join Veerd, from intake to
@@ -251,7 +251,7 @@ export default function HowItWorksDetail() {
           </h2>
           <p className="text-[15px] text-textSecondary leading-[1.65] mb-8">
             You continue your Sprint with renewed clarity. At the end of 30
-            days you receive your personal Transition Report — a summary of
+            days you receive your personal Transition Report, a summary of
             your skills gap analysis, reflection insights, and a recommended
             action plan. You will know whether this transition is right for you
             and exactly what to do next.

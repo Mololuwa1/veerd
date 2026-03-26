@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Veerd",
+  title: "Privacy Policy | Veerd",
   description: "Veerd privacy policy. How we collect, use, and protect your data.",
 };
 
@@ -12,7 +12,7 @@ export default function PrivacyPage() {
         <h1 className="text-[36px] font-bold text-textPrimary tracking-[-1px] mb-8">
           Privacy Policy
         </h1>
-        <p className="text-xs text-textSecondary mb-8">Last updated: January 2025</p>
+        <p className="text-xs text-textSecondary mb-8">Last updated: March 2026</p>
 
         <div className="space-y-8 text-[15px] text-textSecondary leading-[1.75]">
           <section>
@@ -46,7 +46,7 @@ export default function PrivacyPage() {
             <p>
               Your data is stored securely on Supabase servers. We use
               industry-standard encryption for data in transit and at rest.
-              Call recordings are not stored — Twin calls happen in real time
+              Call recordings are not stored. Twin calls happen in real time
               and are not recorded.
             </p>
           </section>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Veerd",
+  title: "Terms of Service | Veerd",
   description: "Veerd terms of service. The rules and agreements for using our platform.",
 };
 
@@ -12,7 +12,7 @@ export default function TermsPage() {
         <h1 className="text-[36px] font-bold text-textPrimary tracking-[-1px] mb-8">
           Terms of Service
         </h1>
-        <p className="text-xs text-textSecondary mb-8">Last updated: January 2025</p>
+        <p className="text-xs text-textSecondary mb-8">Last updated: March 2026</p>
 
         <div className="space-y-8 text-[15px] text-textSecondary leading-[1.75]">
           <section>
@@ -44,12 +44,10 @@ export default function TermsPage() {
               Subscriptions and payments
             </h2>
             <p>
-              Subscriptions are billed through Apple In-App Purchase.
               Subscriptions auto-renew at the end of each billing period.
-              You can cancel anytime in your Apple ID settings before your
-              next renewal date to avoid being charged. Refund requests are
-              handled through Apple. We also offer a 7 day money-back
-              guarantee — contact hello@veerd.co within 7 days of purchase.
+              You can cancel anytime from your account settings before your
+              next renewal date to avoid being charged. If you have any
+              questions about billing, contact us at hello@veerd.co.
             </p>
           </section>
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Button from "@/components/ui/Button";
 
 const avatars = [
   { initial: "S", bg: "#D4C5B2" },
@@ -10,119 +9,383 @@ const avatars = [
   { initial: "K", bg: "#B8A888" },
 ];
 
-export default function Hero() {
-  return (
-    <section className="bg-background py-16 md:py-20 px-6 md:px-12">
-      <div className="max-w-[1100px] mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-        {/* Left column */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="inline-flex items-center gap-2 bg-primaryLight px-3 py-1.5 rounded-full mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-            <span className="text-xs font-bold text-primary">
-              Career transitions, done differently
-            </span>
-          </div>
+const beforeItems = [
+  "Months of online research going nowhere",
+  "Generic career coach advice that does not know your situation",
+  "Still not sure if the change is right for you",
+  "Another year passes without doing anything",
+];
 
-          <h1 className="text-[36px] md:text-[48px] font-bold text-textPrimary tracking-[-1px] leading-[1.15] mb-5">
-            Talk to someone who has already{" "}
-            <span className="text-primary">made the leap</span>
+const afterItems = [
+  "One honest 45-minute conversation with someone who lived it",
+  "Real clarity from someone who has been exactly where you are",
+  "Know within 30 days whether this change is right for you",
+  "Finally move forward with confidence",
+];
+
+const stats = [
+  { number: "45 min", label: "One honest call" },
+  { number: "30 days", label: "Structured Sprint" },
+  { number: "12 hrs", label: "Match time" },
+];
+
+export default function Hero() {
+  const fadeUp = (delay: number) => ({
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.1 },
+    transition: { duration: 0.5, delay, ease: "easeOut" as const },
+  });
+
+  const fadeIn = (delay: number) => ({
+    initial: { opacity: 0 },
+    whileInView: { opacity: 1 },
+    viewport: { once: true, amount: 0.1 },
+    transition: { duration: 0.5, delay, ease: "easeOut" as const },
+  });
+
+  return (
+    <section className="bg-background pt-10 md:pt-20 pb-8 md:pb-16 px-5 md:px-12">
+      <div className="max-w-[1100px] mx-auto grid md:grid-cols-2 gap-8 md:gap-[72px] items-center">
+        {/* Left column */}
+        <motion.div {...fadeUp(0.1)}>
+          {/* Headline */}
+          <h1 className="text-[28px] md:text-[46px] font-bold text-textPrimary tracking-[-0.5px] md:tracking-[-1px] leading-[1.15] md:leading-[1.12] mb-3 md:mb-4">
+            Stop researching.
+            <br />
+            <span className="text-primary">
+              Start talking to someone
+              <br />
+              who has done it.
+            </span>
           </h1>
 
-          <p className="text-[17px] text-textSecondary leading-[1.65] max-w-[420px] mb-9">
-            Not a coach. Not a course. A real person who made the exact career
-            change you are considering — and will tell you the honest truth about
-            it.
+          {/* Subheadline */}
+          <p className="text-[15px] md:text-[17px] text-textSecondary leading-[1.6] md:leading-[1.65] max-w-[460px] mb-6 md:mb-8">
+            Veerd matches you with a real person who made the career leap you are
+            considering. They will tell you what Google cannot: what it actually
+            feels like, what they wished they had known, and whether it was worth it.
           </p>
 
-          <div className="flex items-center gap-3 mb-7">
-            <Button variant="primary">Download Veerd</Button>
-            <Button variant="secondary" href="/how-it-works">
+          {/* Buttons */}
+          <div className="flex items-center gap-3 mb-5 md:mb-6">
+            <a
+              href="#footer-signup"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="font-bold cursor-pointer text-[14px] md:text-[15px] inline-block"
+              style={{
+                background: "#2C2C2C",
+                color: "#FAF7F2",
+                fontWeight: 700,
+                padding: "12px 22px",
+                borderRadius: "10px",
+                border: "none",
+                textDecoration: "none",
+                transition: "background 150ms ease",
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.background = "#3D3D3D")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.background = "#2C2C2C")
+              }
+            >
+              Get matched today
+            </a>
+            <a
+              href="/how-it-works"
+              className="cursor-pointer text-[14px] md:text-[15px]"
+              style={{
+                background: "transparent",
+                color: "#7A7A72",
+                padding: "12px 18px",
+                border: "1.5px solid #E0DDD8",
+                borderRadius: "10px",
+                textDecoration: "none",
+                transition: "border-color 150ms ease",
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.borderColor = "#C4B49E")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.borderColor = "#E0DDD8")
+              }
+            >
               How it works
-            </Button>
+            </a>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="flex -space-x-2">
-              {avatars.map((a) => (
+          {/* Social proof */}
+          <div className="flex items-center gap-2.5">
+            <div className="flex">
+              {avatars.map((a, i) => (
                 <div
                   key={a.initial}
-                  className="w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold text-white border-2 border-white"
-                  style={{ backgroundColor: a.bg }}
+                  className="flex items-center justify-center"
+                  style={{
+                    width: "26px",
+                    height: "26px",
+                    borderRadius: "50%",
+                    border: "2px solid #FAF7F2",
+                    backgroundColor: a.bg,
+                    fontSize: "9px",
+                    fontWeight: 700,
+                    color: "#fff",
+                    marginLeft: i === 0 ? 0 : "-8px",
+                    position: "relative",
+                    zIndex: avatars.length - i,
+                  }}
                 >
                   {a.initial}
                 </div>
               ))}
             </div>
-            <p className="text-[13px] text-textSecondary">
-              200+ <span className="font-bold text-textPrimary">professionals</span>{" "}
+            <p className="text-[12px] md:text-[13px] text-textSecondary">
+              <span className="font-bold text-textPrimary">200+ professionals</span>{" "}
               already on their journey
             </p>
           </div>
         </motion.div>
 
-        {/* Right column — photo composition */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="relative h-[420px] md:h-[480px] hidden md:block"
-        >
-          {/* Main photo */}
-          <div
-            className="absolute top-5 left-10 w-[280px] h-[360px] rounded-xl overflow-hidden"
-            style={{
-              background: "linear-gradient(160deg, #D4C5B2, #C4B49E)",
-            }}
-          >
-            <div className="absolute bottom-4 left-4">
-              <span className="text-xs font-bold text-[#8B7355] bg-white/80 px-2.5 py-1.5 rounded-md">
-                Real people, real transitions
-              </span>
-            </div>
+        {/* Right column */}
+        <div>
+          {/* Before / After grid */}
+          <div className="grid grid-cols-2 gap-2.5 md:gap-3">
+            {/* Before card */}
+            <motion.div
+              {...fadeIn(0.2)}
+              style={{
+                background: "#F0EDED",
+                border: "1px solid #D9D5D0",
+                borderRadius: "14px",
+              }}
+              className="p-3 md:p-6"
+            >
+              <div className="flex items-center gap-1.5 md:gap-2 mb-3 md:mb-4">
+                <div
+                  className="flex-shrink-0"
+                  style={{
+                    width: "18px",
+                    height: "18px",
+                    borderRadius: "50%",
+                    backgroundColor: "#D4A09A",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+                    <path d="M2 2L8 8M8 2L2 8" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                </div>
+                <p
+                  className="text-[9px] md:text-[11px]"
+                  style={{
+                    fontWeight: 700,
+                    color: "#8C6A65",
+                    letterSpacing: "0.8px",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Without Veerd
+                </p>
+              </div>
+              <div className="flex flex-col gap-2 md:gap-3">
+                {beforeItems.map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-start gap-2 md:gap-3"
+                  >
+                    <div
+                      className="flex-shrink-0"
+                      style={{
+                        width: "14px",
+                        height: "14px",
+                        borderRadius: "50%",
+                        backgroundColor: "#D9D5D0",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginTop: "2px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "5px",
+                          height: "5px",
+                          borderRadius: "50%",
+                          backgroundColor: "#A8A49E",
+                        }}
+                      />
+                    </div>
+                    <p
+                      className="text-[11px] md:text-[14px]"
+                      style={{
+                        color: "#5C5C58",
+                        lineHeight: 1.45,
+                        fontWeight: 500,
+                      }}
+                    >
+                      {item}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* After card */}
+            <motion.div
+              {...fadeIn(0.35)}
+              style={{
+                background: "#E4F0E8",
+                border: "1px solid #A8D4B8",
+                borderRadius: "14px",
+              }}
+              className="p-3 md:p-6"
+            >
+              <div className="flex items-center gap-1.5 md:gap-2 mb-3 md:mb-4">
+                <div
+                  className="flex-shrink-0"
+                  style={{
+                    width: "18px",
+                    height: "18px",
+                    borderRadius: "50%",
+                    backgroundColor: "#7D9E8C",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+                    <path d="M2 5.5L4 7.5L8 3" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <p
+                  className="text-[9px] md:text-[11px]"
+                  style={{
+                    fontWeight: 700,
+                    color: "#4A7A5E",
+                    letterSpacing: "0.8px",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  With Veerd
+                </p>
+              </div>
+              <div className="flex flex-col gap-2 md:gap-3">
+                {afterItems.map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-start gap-2 md:gap-3"
+                  >
+                    <div
+                      className="flex-shrink-0"
+                      style={{
+                        width: "14px",
+                        height: "14px",
+                        borderRadius: "50%",
+                        backgroundColor: "#B8D9C5",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginTop: "2px",
+                      }}
+                    >
+                      <svg width="7" height="7" viewBox="0 0 8 8" fill="none">
+                        <path d="M1.5 4.5L3 6L6.5 2.5" stroke="#4A7A5E" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                    <p
+                      className="text-[11px] md:text-[14px]"
+                      style={{
+                        color: "#2C2C2C",
+                        lineHeight: 1.45,
+                        fontWeight: 500,
+                      }}
+                    >
+                      {item}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
 
-          {/* Secondary photo */}
-          <div
-            className="absolute top-[140px] right-0 w-[200px] h-[240px] rounded-lg"
+          {/* Floating insight card */}
+          <motion.div
+            {...fadeIn(0.5)}
+            className="mt-3 md:mt-4 p-3 md:p-4 md:px-5"
             style={{
-              background: "linear-gradient(160deg, #C8B99A, #B8A888)",
+              background: "#FFFFFF",
+              border: "0.5px solid #E0DDD8",
+              borderRadius: "12px",
+              boxShadow: "0px 4px 20px rgba(44, 44, 44, 0.08)",
             }}
-          />
-
-          {/* Floating Twin card */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.5 }}
-            className="absolute top-4 right-5 bg-white rounded-md shadow-card p-3 px-4 w-[180px]"
           >
-            <p className="text-[10px] font-bold uppercase text-textSecondary tracking-[0.5px] mb-1">
-              Your Twin
-            </p>
-            <p className="text-sm font-bold text-textPrimary">Sarah M.</p>
-            <p className="text-xs font-bold text-primary mb-2">
-              Finance → UX Design
-            </p>
-            <span className="text-[10px] font-bold text-primary bg-primaryLight px-2 py-0.5 rounded-full">
-              Available this week
-            </span>
-          </motion.div>
+            {/* Top row */}
+            <div className="flex justify-between items-center">
+              <p
+                className="text-[12px] md:text-[13px]"
+                style={{
+                  fontWeight: 700,
+                  color: "#2C2C2C",
+                }}
+              >
+                Most people wait too long
+              </p>
+              <span
+                className="text-[9px] md:text-[10px] hidden sm:inline-block"
+                style={{
+                  background: "#FAF0EA",
+                  color: "#9E5535",
+                  fontWeight: 700,
+                  padding: "3px 8px",
+                  borderRadius: "999px",
+                }}
+              >
+                The Veerd difference
+              </span>
+            </div>
 
-          {/* Floating stat card */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.6 }}
-            className="absolute bottom-[30px] left-2.5 bg-white rounded-[10px] shadow-card py-2.5 px-3.5"
-          >
-            <p className="text-xl font-bold text-textPrimary">24hrs</p>
-            <p className="text-[11px] text-textSecondary">Average match time</p>
+            {/* Divider */}
+            <div
+              style={{
+                height: "0.5px",
+                backgroundColor: "#E0DDD8",
+                margin: "8px 0",
+              }}
+            />
+
+            {/* Stats row */}
+            <div className="grid grid-cols-3 gap-1">
+              {stats.map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <p
+                    className="text-[18px] md:text-[22px]"
+                    style={{
+                      fontWeight: 700,
+                      color: "#2C2C2C",
+                      letterSpacing: "-0.5px",
+                    }}
+                  >
+                    {stat.number}
+                  </p>
+                  <p
+                    className="text-[9px] md:text-[10px]"
+                    style={{
+                      color: "#7A7A72",
+                    }}
+                  >
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

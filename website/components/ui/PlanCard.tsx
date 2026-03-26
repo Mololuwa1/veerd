@@ -34,8 +34,8 @@ export default function PlanCard({ plan, annual }: PlanCardProps) {
 
       <p className="text-xs text-textSecondary mb-5">
         {annual
-          ? `Billed annually — save £${savings}`
-          : "Billed monthly — cancel anytime"}
+          ? `Billed annually, save £${savings}`
+          : "Billed monthly, cancel anytime"}
       </p>
 
       <hr className="border-border mb-5" />

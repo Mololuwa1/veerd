@@ -8,7 +8,7 @@ import ForTwins from "@/components/sections/ForTwins";
 import FAQ from "@/components/sections/FAQ";
 
 export const metadata: Metadata = {
-  title: "Veerd — Career transition through real human connection",
+  title: "Veerd | Career transition through real human connection",
   description:
     "Meet the person who made the exact career change you are considering. Veerd matches you with real career changers for honest conversation and structured exploration.",
 };
