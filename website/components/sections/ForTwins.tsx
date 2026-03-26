@@ -69,8 +69,26 @@ export default function ForTwins() {
               key={stat.label}
               className="bg-white rounded-md shadow-card p-4 px-5"
             >
-              <p className="text-2xl font-bold text-textPrimary">
+              <p className="text-2xl font-bold text-textPrimary flex items-center gap-1.5">
                 {stat.value}
+                {stat.value === "4.9" && (
+                  <span className="flex items-center gap-0.5">
+                    {[1, 2, 3, 4].map((i) => (
+                      <svg key={i} width="16" height="16" viewBox="0 0 16 16" fill="#C4714A">
+                        <path d="M8 0.5l2.47 5.01L16 6.26l-4 3.9.94 5.49L8 13.01l-4.94 2.64L4 10.16l-4-3.9 5.53-.75z" />
+                      </svg>
+                    ))}
+                    <svg width="16" height="16" viewBox="0 0 16 16">
+                      <defs>
+                        <linearGradient id="half-star">
+                          <stop offset="50%" stopColor="#C4714A" />
+                          <stop offset="50%" stopColor="#E0DDD8" />
+                        </linearGradient>
+                      </defs>
+                      <path d="M8 0.5l2.47 5.01L16 6.26l-4 3.9.94 5.49L8 13.01l-4.94 2.64L4 10.16l-4-3.9 5.53-.75z" fill="url(#half-star)" />
+                    </svg>
+                  </span>
+                )}
               </p>
               <p className="text-sm text-textSecondary">{stat.label}</p>
             </div>

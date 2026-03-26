@@ -1,3 +1,5 @@
+"use client";
+
 import { PricingPlan } from "@/types";
 
 interface PlanCardProps {
@@ -59,15 +61,20 @@ export default function PlanCard({ plan, annual }: PlanCardProps) {
         ))}
       </ul>
 
-      <button
-        className={`w-full py-3 rounded-[10px] text-[15px] font-bold transition-all ${
+      <a
+        href="#footer-signup"
+        onClick={(e) => {
+          e.preventDefault();
+          document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
+        }}
+        className={`block w-full py-3 rounded-[10px] text-[15px] font-bold transition-all text-center cursor-pointer ${
           plan.buttonVariant === "primary"
             ? "bg-textPrimary text-background hover:opacity-90"
             : "bg-transparent text-textSecondary border-[1.5px] border-border hover:border-textSecondary"
         }`}
       >
         {plan.buttonText}
-      </button>
+      </a>
     </div>
   );
 }

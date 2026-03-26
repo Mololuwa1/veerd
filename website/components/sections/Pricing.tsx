@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { pricingPlans } from "@/constants/content";
 
 export default function Pricing() {
@@ -126,15 +127,20 @@ export default function Pricing() {
                   ))}
                 </ul>
 
-                <button
-                  className={`w-full py-3.5 rounded-[10px] text-[15px] font-bold transition-all ${
+                <a
+                  href="#footer-signup"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className={`block w-full py-3.5 rounded-[10px] text-[15px] font-bold transition-all text-center cursor-pointer ${
                     plan.buttonVariant === "primary"
                       ? "bg-textPrimary text-background hover:bg-[#3D3D3D]"
                       : "bg-transparent text-textSecondary border-[1.5px] border-border hover:border-[#C4B49E]"
                   }`}
                 >
                   {plan.buttonText}
-                </button>
+                </a>
 
                 {plan.popular && (
                   <p className="text-[11px] text-textSecondary text-center mt-3">
@@ -149,14 +155,15 @@ export default function Pricing() {
         {/* Social proof nudge */}
         <div className="flex items-center justify-center gap-3 mt-10">
           <div className="flex -space-x-2">
-            {["#D4C5B2", "#C8B99A", "#BFB094"].map((color, i) => (
-              <div
+            {["/images/giorgio-trovato-VzusBjHlKM8-unsplash.jpg", "/images/ryan-hoffman-Ft4p5E9HjTQ-unsplash.jpg", "/images/willian-souza-p5BoBF0XJUA-unsplash.jpg"].map((src, i) => (
+              <Image
                 key={i}
-                className="w-6 h-6 rounded-full border-2 border-background flex items-center justify-center text-[9px] font-bold text-white"
-                style={{ backgroundColor: color }}
-              >
-                {["S", "J", "M"][i]}
-              </div>
+                src={src}
+                alt=""
+                width={28}
+                height={28}
+                className="w-7 h-7 rounded-full border-2 border-background object-cover object-top"
+              />
             ))}
           </div>
           <p className="text-[13px] text-textSecondary">

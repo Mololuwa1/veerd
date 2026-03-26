@@ -1,33 +1,36 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { blogPosts } from "@/constants/blogPosts";
+import { getPostBySlug, getAllPublishedPosts } from "@/lib/blog";
 
 interface Props {
   params: { slug: string };
 }
 
+export const revalidate = 60;
+
 export async function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+  const posts = await getAllPublishedPosts();
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = blogPosts.find((p) => p.slug === params.slug);
+  const post = await getPostBySlug(params.slug);
   if (!post) return {};
 
   return {
     title: `${post.title} | Veerd`,
-    description: post.metaDescription,
+    description: post.meta_description,
     openGraph: {
       title: post.title,
-      description: post.metaDescription,
+      description: post.meta_description,
       type: "article",
     },
   };
 }
 
-export default function BlogPost({ params }: Props) {
-  const post = blogPosts.find((p) => p.slug === params.slug);
+export default async function BlogPostPage({ params }: Props) {
+  const post = await getPostBySlug(params.slug);
 
   if (!post) {
     notFound();
@@ -47,8 +50,8 @@ export default function BlogPost({ params }: Props) {
           <span className="text-xs font-bold text-primary bg-primaryLight px-2.5 py-1 rounded-full">
             {post.category}
           </span>
-          <span className="text-xs text-textSecondary">{post.readingTime}</span>
-          <span className="text-xs text-textSecondary">{post.publishedAt}</span>
+          <span className="text-xs text-textSecondary">{post.reading_time}</span>
+          <span className="text-xs text-textSecondary">{post.published_at}</span>
         </div>
 
         <h1 className="text-[32px] md:text-[40px] font-bold text-textPrimary tracking-[-1px] leading-[1.2] mb-8">

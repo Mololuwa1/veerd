@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
-import { blogPosts } from "@/constants/blogPosts";
+import { getAllPublishedPosts } from "@/lib/blog";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://veerd.co";
 
   const staticPages = [
@@ -18,9 +18,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === "" ? 1 : 0.8,
   }));
 
-  const blogPages = blogPosts.map((post) => ({
+  const posts = await getAllPublishedPosts();
+  const blogPages = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.publishedAt),
+    lastModified: new Date(post.published_at),
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));

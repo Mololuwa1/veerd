@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
-const avatars = [
-  { initial: "S", bg: "#D4C5B2" },
-  { initial: "M", bg: "#C8B99A" },
-  { initial: "J", bg: "#BFB094" },
-  { initial: "K", bg: "#B8A888" },
+const avatarImages = [
+  "/images/giorgio-trovato-VzusBjHlKM8-unsplash.jpg",
+  "/images/ryan-hoffman-Ft4p5E9HjTQ-unsplash.jpg",
+  "/images/willian-souza-p5BoBF0XJUA-unsplash.jpg",
 ];
 
 const beforeItems = [
@@ -123,26 +123,22 @@ export default function Hero() {
           {/* Social proof */}
           <div className="flex items-center gap-2.5">
             <div className="flex">
-              {avatars.map((a, i) => (
-                <div
-                  key={a.initial}
-                  className="flex items-center justify-center"
+              {avatarImages.map((src, i) => (
+                <Image
+                  key={i}
+                  src={src}
+                  alt=""
+                  width={28}
+                  height={28}
+                  className="rounded-full object-cover object-top border-2 border-[#FAF7F2]"
                   style={{
                     width: "26px",
                     height: "26px",
-                    borderRadius: "50%",
-                    border: "2px solid #FAF7F2",
-                    backgroundColor: a.bg,
-                    fontSize: "9px",
-                    fontWeight: 700,
-                    color: "#fff",
                     marginLeft: i === 0 ? 0 : "-8px",
                     position: "relative",
-                    zIndex: avatars.length - i,
+                    zIndex: avatarImages.length - i,
                   }}
-                >
-                  {a.initial}
-                </div>
+                />
               ))}
             </div>
             <p className="text-[12px] md:text-[13px] text-textSecondary">
@@ -164,7 +160,7 @@ export default function Hero() {
                 border: "1px solid #D9D5D0",
                 borderRadius: "14px",
               }}
-              className="p-3 md:p-6"
+              className="p-5 md:p-6"
             >
               <div className="flex items-center gap-1.5 md:gap-2 mb-3 md:mb-4">
                 <div
@@ -184,7 +180,7 @@ export default function Hero() {
                   </svg>
                 </div>
                 <p
-                  className="text-[9px] md:text-[11px]"
+                  className="text-[11px] md:text-[11px]"
                   style={{
                     fontWeight: 700,
                     color: "#8C6A65",
@@ -224,7 +220,7 @@ export default function Hero() {
                       />
                     </div>
                     <p
-                      className="text-[11px] md:text-[14px]"
+                      className="text-[13px] md:text-[14px]"
                       style={{
                         color: "#4A4A45",
                         lineHeight: 1.45,
@@ -246,7 +242,7 @@ export default function Hero() {
                 border: "1px solid #A8D4B8",
                 borderRadius: "14px",
               }}
-              className="p-3 md:p-6"
+              className="p-5 md:p-6"
             >
               <div className="flex items-center gap-1.5 md:gap-2 mb-3 md:mb-4">
                 <div
@@ -266,7 +262,7 @@ export default function Hero() {
                   </svg>
                 </div>
                 <p
-                  className="text-[9px] md:text-[11px]"
+                  className="text-[11px] md:text-[11px]"
                   style={{
                     fontWeight: 700,
                     color: "#4A7A5E",
@@ -301,7 +297,7 @@ export default function Hero() {
                       </svg>
                     </div>
                     <p
-                      className="text-[11px] md:text-[14px]"
+                      className="text-[13px] md:text-[14px]"
                       style={{
                         color: "#2C2C2C",
                         lineHeight: 1.45,
@@ -319,7 +315,7 @@ export default function Hero() {
           {/* Floating insight card */}
           <motion.div
             {...fadeIn(0.5)}
-            className="mt-3 md:mt-4 p-3 md:p-4 md:px-5"
+            className="mt-3 md:mt-4 p-4 md:p-4 md:px-5"
             style={{
               background: "#FFFFFF",
               border: "0.5px solid #E0DDD8",
@@ -376,7 +372,7 @@ export default function Hero() {
                     {stat.number}
                   </p>
                   <p
-                    className="text-[9px] md:text-[10px]"
+                    className="text-[10px] md:text-[10px]"
                     style={{
                       color: "#4D4D47",
                     }}

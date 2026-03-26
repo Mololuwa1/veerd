@@ -80,60 +80,76 @@ export default function Nav() {
       {/* Mobile hamburger */}
       <button
         onClick={() => setMenuOpen(!menuOpen)}
-        className="md:hidden flex flex-col gap-1.5 p-2"
+        className="md:hidden flex flex-col gap-[5px] p-2"
         aria-label="Toggle menu"
       >
         <span
-          className={`block w-5 h-[1.5px] bg-textPrimary transition-transform ${
-            menuOpen ? "rotate-45 translate-y-[3.5px]" : ""
+          className={`block w-6 h-[2px] bg-textPrimary transition-all duration-300 ${
+            menuOpen ? "rotate-45 translate-y-[7px]" : ""
           }`}
         />
         <span
-          className={`block w-5 h-[1.5px] bg-textPrimary transition-opacity ${
+          className={`block w-6 h-[2px] bg-textPrimary transition-all duration-300 ${
             menuOpen ? "opacity-0" : ""
           }`}
         />
         <span
-          className={`block w-5 h-[1.5px] bg-textPrimary transition-transform ${
-            menuOpen ? "-rotate-45 -translate-y-[3.5px]" : ""
+          className={`block w-6 h-[2px] bg-textPrimary transition-all duration-300 ${
+            menuOpen ? "-rotate-45 -translate-y-[7px]" : ""
           }`}
         />
       </button>
 
-      {/* Mobile overlay */}
+      {/* Mobile slide-in panel */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-16 bg-background z-40 flex flex-col items-center justify-center gap-8"
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-xl text-textPrimary font-bold"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <a
-              href="#footer-signup"
-              onClick={(e) => {
-                e.preventDefault();
-                setMenuOpen(false);
-                setTimeout(() => {
-                  document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
-                }, 300);
-              }}
-              className="text-base font-bold text-background bg-textPrimary px-8 py-3 rounded-sm cursor-pointer"
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 top-16 bg-black/50 z-40"
+              onClick={() => setMenuOpen(false)}
+            />
+            {/* Panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="fixed top-16 right-0 bottom-0 w-[280px] bg-background border-l border-border z-50 shadow-2xl flex flex-col px-8 pt-10"
             >
-              Get early access
-            </a>
-          </motion.div>
+              <div className="flex flex-col gap-6">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="text-[17px] text-textPrimary font-semibold hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+              <div className="mt-8 pt-6 border-t border-border">
+                <a
+                  href="#footer-signup"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMenuOpen(false);
+                    setTimeout(() => {
+                      document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
+                    }, 300);
+                  }}
+                  className="block w-full text-center text-[15px] font-bold text-background bg-textPrimary px-6 py-3 rounded-[10px] cursor-pointer hover:opacity-90 transition-opacity"
+                >
+                  Get early access
+                </a>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
