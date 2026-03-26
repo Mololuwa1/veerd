@@ -100,56 +100,44 @@ export default function Nav() {
         />
       </button>
 
-      {/* Mobile slide-in panel */}
+      {/* Mobile full-screen menu */}
       <AnimatePresence>
         {menuOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="fixed inset-0 top-16 bg-black/50 z-[60]"
-              onClick={() => setMenuOpen(false)}
-            />
-            {/* Panel */}
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="fixed top-16 right-0 bottom-0 w-[280px] bg-[#FAF7F2] border-l border-border z-[70] shadow-2xl flex flex-col px-8 pt-10"
-            >
-              <div className="flex flex-col gap-6">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="text-[17px] text-textPrimary font-semibold hover:text-primary transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-              <div className="mt-8 pt-6 border-t border-border">
-                <a
-                  href="#footer-signup"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setMenuOpen(false);
-                    setTimeout(() => {
-                      document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
-                    }, 300);
-                  }}
-                  className="block w-full text-center text-[15px] font-bold text-background bg-textPrimary px-6 py-3 rounded-[10px] cursor-pointer hover:opacity-90 transition-opacity"
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 top-16 z-[70] bg-[#FAF7F2] flex flex-col px-8 pt-10 overflow-y-auto"
+          >
+            <div className="flex flex-col gap-7">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-[20px] text-textPrimary font-semibold hover:text-primary transition-colors"
                 >
-                  Get early access
-                </a>
-              </div>
-            </motion.div>
-          </>
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+            <div className="mt-10 pt-8 border-t border-border">
+              <a
+                href="#footer-signup"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMenuOpen(false);
+                  setTimeout(() => {
+                    document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
+                  }, 300);
+                }}
+                className="block w-full text-center text-[16px] font-bold text-background bg-textPrimary px-6 py-3.5 rounded-[10px] cursor-pointer hover:opacity-90 transition-opacity"
+              >
+                Get early access
+              </a>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </nav>
