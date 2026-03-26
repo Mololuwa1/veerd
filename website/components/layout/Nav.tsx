@@ -14,38 +14,45 @@ const navLinks = [
 
 function MobileMenu({ onClose }: { onClose: () => void }) {
   return createPortal(
-    <div
-      className="fixed inset-0 top-16 z-[9999] bg-[#FAF7F2] flex flex-col px-8 pt-10 overflow-y-auto"
-      style={{ opacity: 1 }}
-    >
-      <div className="flex flex-col gap-7">
-        {navLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            onClick={onClose}
-            className="text-[20px] text-[#2C2C2C] font-semibold"
+    <>
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 top-16 z-[9998] bg-black/40"
+        onClick={onClose}
+      />
+      {/* Panel from right */}
+      <div
+        className="fixed top-16 right-0 bottom-0 w-[280px] z-[9999] bg-[#FAF7F2] shadow-2xl flex flex-col px-8 pt-10 overflow-y-auto border-l border-[#E0DDD8]"
+      >
+        <div className="flex flex-col gap-7">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={onClose}
+              className="text-[20px] text-[#2C2C2C] font-semibold"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+        <div className="mt-10 pt-8 border-t border-[#E0DDD8]">
+          <a
+            href="#footer-signup"
+            onClick={(e) => {
+              e.preventDefault();
+              onClose();
+              setTimeout(() => {
+                document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
+              }, 300);
+            }}
+            className="block w-full text-center text-[16px] font-bold text-[#FAF7F2] bg-[#2C2C2C] px-6 py-3.5 rounded-[10px] cursor-pointer"
           >
-            {link.label}
-          </Link>
-        ))}
+            Get early access
+          </a>
+        </div>
       </div>
-      <div className="mt-10 pt-8 border-t border-[#E0DDD8]">
-        <a
-          href="#footer-signup"
-          onClick={(e) => {
-            e.preventDefault();
-            onClose();
-            setTimeout(() => {
-              document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
-            }, 300);
-          }}
-          className="block w-full text-center text-[16px] font-bold text-[#FAF7F2] bg-[#2C2C2C] px-6 py-3.5 rounded-[10px] cursor-pointer"
-        >
-          Get early access
-        </a>
-      </div>
-    </div>,
+    </>,
     document.body
   );
 }
