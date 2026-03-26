@@ -63,13 +63,15 @@ export default async function BlogPostPage({ params }: Props) {
             [&>p]:text-[16px] [&>p]:text-textSecondary [&>p]:leading-[1.75] [&>p]:mb-6
             [&>h2]:text-[22px] [&>h2]:font-bold [&>h2]:text-textPrimary [&>h2]:mt-10 [&>h2]:mb-4
             [&>strong]:text-textPrimary [&>strong]:font-bold
-            [&>ul]:space-y-2 [&>ul>li]:text-[16px] [&>ul>li]:text-textSecondary [&>ul>li]:leading-[1.75]"
+            [&>ul]:space-y-2 [&>ul>li]:text-[16px] [&>ul>li]:text-textSecondary [&>ul>li]:leading-[1.75]
+            [&>img]:rounded-xl [&>img]:my-8 [&>img]:w-full [&>img]:shadow-sm"
           dangerouslySetInnerHTML={{
             __html: post.content
               .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+              .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />')
               .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
               .replace(/\n\n/g, '</p><p>')
-              .replace(/^(?!<[hp])/gm, '<p>')
+              .replace(/^(?!<[hp]|<img)/gm, '<p>')
               .replace(/(?<![>])$/gm, '</p>')
           }}
         />

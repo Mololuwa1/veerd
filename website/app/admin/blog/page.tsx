@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface BlogPost {
   id: string;
@@ -37,6 +37,92 @@ export default function AdminBlogPage() {
   const [metaDescription, setMetaDescription] = useState("");
   const [status, setStatus] = useState<"draft" | "published">("draft");
   const [publishedAt, setPublishedAt] = useState(new Date().toISOString().split("T")[0]);
+  const [uploading, setUploading] = useState(false);
+  const [uploadedImages, setUploadedImages] = useState<{ url: string; fileName: string }[]>([]);
+  const contentRef = useRef<HTMLTextAreaElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageUpload = async (file: File) => {
+    setUploading(true);
+    setMessage("");
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await fetch("/api/blog/upload", {
+        method: "POST",
+        headers: { "x-admin-password": password },
+        body: formData,
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setUploadedImages((prev) => [...prev, { url: data.url, fileName: data.fileName }]);
+        setMessage(`Image uploaded: ${data.fileName}`);
+        return data.url;
+      } else {
+        const err = await res.json();
+        setMessage(err.error || "Upload failed");
+        return null;
+      }
+    } catch {
+      setMessage("Upload failed");
+      return null;
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const insertImageAtCursor = (url: string, alt?: string) => {
+    const textarea = contentRef.current;
+    if (!textarea) return;
+
+    const imgMarkdown = `\n\n![${alt || "image"}](${url})\n\n`;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const newContent = content.substring(0, start) + imgMarkdown + content.substring(end);
+    setContent(newContent);
+
+    // Restore cursor position after the inserted text
+    setTimeout(() => {
+      textarea.focus();
+      const newPos = start + imgMarkdown.length;
+      textarea.setSelectionRange(newPos, newPos);
+    }, 0);
+  };
+
+  const handleDrop = async (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const files = Array.from(e.dataTransfer.files).filter((f) =>
+      f.type.startsWith("image/")
+    );
+
+    for (const file of files) {
+      const url = await handleImageUpload(file);
+      if (url) {
+        insertImageAtCursor(url, file.name.replace(/\.[^.]+$/, ""));
+      }
+    }
+  };
+
+  const handlePaste = async (e: React.ClipboardEvent) => {
+    const items = Array.from(e.clipboardData.items);
+    const imageItem = items.find((item) => item.type.startsWith("image/"));
+
+    if (imageItem) {
+      e.preventDefault();
+      const file = imageItem.getAsFile();
+      if (file) {
+        const url = await handleImageUpload(file);
+        if (url) {
+          insertImageAtCursor(url, "pasted-image");
+        }
+      }
+    }
+  };
 
   const fetchPosts = async () => {
     setLoading(true);
@@ -99,6 +185,7 @@ export default function AdminBlogPage() {
     setStatus("draft");
     setPublishedAt(new Date().toISOString().split("T")[0]);
     setEditingPost(null);
+    setUploadedImages([]);
   };
 
   const openEditor = (post?: BlogPost) => {
@@ -296,16 +383,87 @@ export default function AdminBlogPage() {
             {/* Content */}
             <div>
               <label className="block text-xs font-bold text-textPrimary uppercase tracking-wide mb-1.5">
-                Content <span className="text-textSecondary font-normal normal-case">(use ## for headings, **text** for bold)</span>
+                Content <span className="text-textSecondary font-normal normal-case">(use ## for headings, **text** for bold, drag &amp; drop or paste images)</span>
               </label>
+
+              {/* Toolbar */}
+              <div className="flex items-center gap-2 mb-2 bg-white border border-border border-b-0 rounded-t-lg px-3 py-2">
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={uploading}
+                  className="flex items-center gap-1.5 text-xs font-bold text-textSecondary hover:text-textPrimary transition-colors px-2.5 py-1.5 border border-border rounded-md hover:bg-gray-50 disabled:opacity-50"
+                >
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <rect x="1" y="1" width="14" height="14" rx="2" />
+                    <circle cx="5.5" cy="5.5" r="1.5" />
+                    <path d="M1 11l3.5-3.5L8 11l3-4 4 5" strokeLinejoin="round" />
+                  </svg>
+                  {uploading ? "Uploading..." : "Upload Image"}
+                </button>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/gif"
+                  className="hidden"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      const url = await handleImageUpload(file);
+                      if (url) {
+                        insertImageAtCursor(url, file.name.replace(/\.[^.]+$/, ""));
+                      }
+                    }
+                    e.target.value = "";
+                  }}
+                />
+                <span className="text-[10px] text-textSecondary/60 ml-auto">
+                  Tip: paste or drag images directly into the editor
+                </span>
+              </div>
+
               <textarea
+                ref={contentRef}
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                placeholder="Write your blog post here..."
+                onDrop={handleDrop}
+                onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); }}
+                onPaste={handlePaste}
+                placeholder="Write your blog post here... You can drag & drop images or paste them from your clipboard."
                 rows={20}
-                className="w-full bg-white border border-border rounded-lg px-4 py-3 text-sm text-textPrimary focus:outline-none focus:border-primary resize-y font-mono leading-relaxed"
+                className="w-full bg-white border border-border rounded-b-lg px-4 py-3 text-sm text-textPrimary focus:outline-none focus:border-primary resize-y font-mono leading-relaxed"
               />
             </div>
+
+            {/* Uploaded Images Gallery */}
+            {uploadedImages.length > 0 && (
+              <div>
+                <label className="block text-xs font-bold text-textPrimary uppercase tracking-wide mb-2">
+                  Uploaded Images <span className="text-textSecondary font-normal normal-case">(click to insert into content)</span>
+                </label>
+                <div className="flex flex-wrap gap-3">
+                  {uploadedImages.map((img, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => insertImageAtCursor(img.url, img.fileName.replace(/\.[^.]+$/, ""))}
+                      className="group relative w-24 h-24 rounded-lg overflow-hidden border border-border hover:border-primary transition-colors"
+                    >
+                      <img
+                        src={img.url}
+                        alt={img.fileName}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                        <span className="text-white text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                          Insert
+                        </span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Row: Category + Reading Time + Date */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
