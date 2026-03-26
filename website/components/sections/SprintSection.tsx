@@ -69,20 +69,20 @@ export default function SprintSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs font-bold uppercase text-secondary tracking-[1px] mb-3">
+          <p className="text-xs font-bold uppercase text-secondary tracking-[1px] mb-3 text-center md:text-left">
             Sprints
           </p>
-          <h2 className="text-[36px] font-bold text-textPrimary tracking-[-0.5px] max-w-[440px] mb-4">
+          <h2 className="text-[28px] md:text-[36px] font-bold text-textPrimary tracking-[-0.5px] max-w-[440px] mb-4 leading-[1.2] text-center md:text-left mx-auto md:mx-0">
             Every month, a new Sprint. Every Sprint, real progress.
           </h2>
-          <p className="text-[17px] text-textSecondary leading-[1.65] mb-4">
+          <p className="text-[16px] md:text-[17px] text-textSecondary leading-[1.65] mb-4 text-center md:text-left">
             Sprints are 30 day structured programmes that guide you through a specific part of your career transition, 15 minutes a day. Finish one and start the next. Explore a new direction, go deeper on the one you chose, or build the skills you need to land.
           </p>
-          <p className="text-[15px] text-textSecondary leading-[1.65] mb-8">
+          <p className="text-[15px] text-textSecondary leading-[1.65] mb-8 text-center md:text-left">
             This is not a one-off course. It is an ongoing journey that grows with you, month after month, until you are exactly where you want to be.
           </p>
 
-          <div className="space-y-4 mb-8">
+          <div className="space-y-4 mb-8 max-w-[400px] mx-auto md:mx-0 md:max-w-none">
             {sprintFeatures.map((feature) => (
               <div key={feature} className="flex items-start gap-3">
                 <div className="w-5 h-5 rounded-full bg-primaryLight flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -107,16 +107,16 @@ export default function SprintSection() {
             ))}
           </div>
 
-          <div className="flex gap-10">
-            <div>
+          <div className="flex gap-10 justify-center md:justify-start">
+            <div className="text-center md:text-left">
               <p className="text-2xl font-bold text-textPrimary">15 min</p>
               <p className="text-xs text-textSecondary">Daily commitment</p>
             </div>
-            <div>
+            <div className="text-center md:text-left">
               <p className="text-2xl font-bold text-textPrimary">30+</p>
               <p className="text-xs text-textSecondary">Sprint topics available</p>
             </div>
-            <div>
+            <div className="text-center md:text-left">
               <p className="text-2xl font-bold text-textPrimary">Ongoing</p>
               <p className="text-xs text-textSecondary">New Sprints every month</p>
             </div>
