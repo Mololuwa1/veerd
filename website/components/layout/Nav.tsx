@@ -110,7 +110,7 @@ export default function Nav() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="fixed inset-0 top-16 bg-black/50 z-40"
+              className="fixed inset-0 top-16 bg-black/50 z-[60]"
               onClick={() => setMenuOpen(false)}
             />
             {/* Panel */}
@@ -119,7 +119,7 @@ export default function Nav() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="fixed top-16 right-0 bottom-0 w-[280px] bg-background border-l border-border z-50 shadow-2xl flex flex-col px-8 pt-10"
+              className="fixed top-16 right-0 bottom-0 w-[280px] bg-[#FAF7F2] border-l border-border z-[70] shadow-2xl flex flex-col px-8 pt-10"
             >
               <div className="flex flex-col gap-6">
                 {navLinks.map((link) => (
