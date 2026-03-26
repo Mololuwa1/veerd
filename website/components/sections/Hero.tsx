@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const avatars = [
@@ -30,19 +31,20 @@ const stats = [
 ];
 
 export default function Hero() {
-  const fadeUp = (delay: number) => ({
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.1 },
-    transition: { duration: 0.5, delay, ease: "easeOut" as const },
-  });
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
 
-  const fadeIn = (delay: number) => ({
-    initial: { opacity: 0 },
-    whileInView: { opacity: 1 },
-    viewport: { once: true, amount: 0.1 },
+  const fadeUp = (delay: number) => mounted ? ({
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
     transition: { duration: 0.5, delay, ease: "easeOut" as const },
-  });
+  }) : { style: { opacity: 1 } };
+
+  const fadeIn = (delay: number) => mounted ? ({
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    transition: { duration: 0.5, delay, ease: "easeOut" as const },
+  }) : { style: { opacity: 1 } };
 
   return (
     <section className="bg-background pt-10 md:pt-20 pb-8 md:pb-16 px-5 md:px-12">
@@ -61,7 +63,7 @@ export default function Hero() {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-[15px] md:text-[17px] text-textSecondary leading-[1.6] md:leading-[1.65] max-w-[460px] mb-6 md:mb-8">
+          <p className="text-[15px] md:text-[17px] text-textSecondary font-medium leading-[1.6] md:leading-[1.65] max-w-[460px] mb-6 md:mb-8">
             Veerd matches you with a real person who made the career leap you are
             considering. They will tell you what Google cannot: what it actually
             feels like, what they wished they had known, and whether it was worth it.
@@ -100,7 +102,7 @@ export default function Hero() {
               className="cursor-pointer text-[14px] md:text-[15px]"
               style={{
                 background: "transparent",
-                color: "#7A7A72",
+                color: "#4D4D47",
                 padding: "12px 18px",
                 border: "1.5px solid #E0DDD8",
                 borderRadius: "10px",
@@ -153,7 +155,7 @@ export default function Hero() {
         {/* Right column */}
         <div>
           {/* Before / After grid */}
-          <div className="grid grid-cols-2 gap-2.5 md:gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {/* Before card */}
             <motion.div
               {...fadeIn(0.2)}
@@ -224,7 +226,7 @@ export default function Hero() {
                     <p
                       className="text-[11px] md:text-[14px]"
                       style={{
-                        color: "#5C5C58",
+                        color: "#4A4A45",
                         lineHeight: 1.45,
                         fontWeight: 500,
                       }}
@@ -376,7 +378,7 @@ export default function Hero() {
                   <p
                     className="text-[9px] md:text-[10px]"
                     style={{
-                      color: "#7A7A72",
+                      color: "#4D4D47",
                     }}
                   >
                     {stat.label}

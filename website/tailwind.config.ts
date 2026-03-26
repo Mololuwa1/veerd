@@ -15,11 +15,11 @@ const config: Config = {
         secondary: "#C4714A",
         secondaryLight: "#FAF0EA",
         textPrimary: "#2C2C2C",
-        textSecondary: "#7A7A72",
+        textSecondary: "#434340",
         cardBackground: "#FFFFFF",
         border: "#E0DDD8",
         inCall: "#2C2C2C",
-        warmGrey: "#7A7A72",
+        warmGrey: "#4D4D47",
       },
       fontFamily: {
         sans: ["var(--font-plus-jakarta)", "sans-serif"],
