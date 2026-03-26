@@ -65,6 +65,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </noscript>
         )}
         <Nav />
+        <div className="h-16" /> {/* Spacer for fixed nav */}
         <main>{children}</main>
         <Footer />
         <Analytics />

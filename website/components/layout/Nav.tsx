@@ -79,9 +79,9 @@ export default function Nav() {
   return (
     <>
       <nav
-        className={`sticky top-0 z-[10000] h-16 flex items-center justify-between px-6 md:px-12 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-[10000] h-16 flex items-center justify-between px-6 md:px-12 transition-all duration-300 ${
           scrolled
-            ? "bg-[#FAF7F2]/95 backdrop-blur-sm border-b border-[#E0DDD8]/80"
+            ? "bg-[#FAF7F2] border-b border-[#E0DDD8]/80 shadow-sm"
             : "bg-[#FAF7F2] border-b border-[#E0DDD8]/40"
         }`}
       >
