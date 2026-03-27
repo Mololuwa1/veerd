@@ -258,7 +258,14 @@ export default function HowItWorksDetail() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button variant="primary">Download Veerd</Button>
+            <Button
+              variant="primary"
+              onClick={() => {
+                document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Get early access
+            </Button>
             <Button variant="secondary" href="/#pricing">
               View pricing
             </Button>
