@@ -60,8 +60,8 @@ const currentDays = [
 
 export default function SprintSection() {
   return (
-    <section className="bg-background py-20 px-6 md:px-12">
-      <div className="max-w-[1100px] mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <section className="bg-background py-20 px-6 md:px-12 overflow-hidden">
+      <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Left column */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -107,7 +107,7 @@ export default function SprintSection() {
             ))}
           </div>
 
-          <div className="flex gap-10 justify-center md:justify-start">
+          <div className="flex gap-6 md:gap-10 justify-center md:justify-start">
             <div className="text-center md:text-left">
               <p className="text-2xl font-bold text-textPrimary">15 min</p>
               <p className="text-xs text-textSecondary">Daily commitment</p>
@@ -129,10 +129,10 @@ export default function SprintSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="space-y-4"
+          className="space-y-4 max-w-[500px] mx-auto md:max-w-none md:mx-0"
         >
           {/* Sprint journey overview */}
-          <div className="bg-white rounded-xl shadow-card p-5">
+          <div className="bg-white rounded-xl shadow-card p-5 w-full">
             <p className="text-xs font-bold uppercase text-textSecondary tracking-[0.5px] mb-4">
               Your Sprint journey
             </p>
@@ -201,7 +201,7 @@ export default function SprintSection() {
           </div>
 
           {/* Current Sprint detail */}
-          <div className="bg-white rounded-xl shadow-card p-5">
+          <div className="bg-white rounded-xl shadow-card p-5 w-full">
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm font-bold text-textPrimary">
                 Building a UX Portfolio
