@@ -125,11 +125,11 @@ export default function SprintSection() {
 
         {/* Right column - Sprint journey visual */}
         <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="space-y-4 max-w-[500px] mx-auto md:max-w-none md:mx-0"
+          className="space-y-4 w-full max-w-full"
         >
           {/* Sprint journey overview */}
           <div className="bg-white rounded-xl shadow-card p-5 w-full">
