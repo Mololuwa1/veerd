@@ -75,10 +75,10 @@ export default function SprintSection() {
           <h2 className="text-[28px] md:text-[36px] font-bold text-textPrimary tracking-[-0.5px] max-w-[440px] mb-4 leading-[1.2] text-center md:text-left mx-auto md:mx-0">
             Every month, a new Sprint. Every Sprint, real progress.
           </h2>
-          <p className="text-[16px] md:text-[17px] text-textSecondary leading-[1.65] mb-4 text-center md:text-left">
+          <p className="text-[16px] md:text-[17px] text-textSecondary leading-[1.65] mb-4 text-justify md:text-left">
             Sprints are 30 day structured programmes that guide you through a specific part of your career transition, 15 minutes a day. Finish one and start the next. Explore a new direction, go deeper on the one you chose, or build the skills you need to land.
           </p>
-          <p className="text-[15px] text-textSecondary leading-[1.65] mb-8 text-center md:text-left">
+          <p className="text-[15px] text-textSecondary leading-[1.65] mb-8 text-justify md:text-left">
             This is not a one-off course. It is an ongoing journey that grows with you, month after month, until you are exactly where you want to be.
           </p>
 
