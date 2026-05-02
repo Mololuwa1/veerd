@@ -260,11 +260,9 @@ export default function HowItWorksDetail() {
           <div className="flex flex-col sm:flex-row gap-3">
             <Button
               variant="primary"
-              onClick={() => {
-                document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
-              }}
+              href="https://apps.apple.com/us/app/veerd/id6760735474"
             >
-              Get early access
+              Download on the App Store
             </Button>
             <Button variant="secondary" href="/#pricing">
               View pricing

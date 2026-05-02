@@ -128,11 +128,9 @@ export default function Pricing() {
                 </ul>
 
                 <a
-                  href="#footer-signup"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
-                  }}
+                  href="https://apps.apple.com/us/app/veerd/id6760735474"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`block w-full py-3.5 rounded-[10px] text-[15px] font-bold transition-all text-center cursor-pointer ${
                     plan.buttonVariant === "primary"
                       ? "bg-textPrimary text-background hover:bg-[#3D3D3D]"

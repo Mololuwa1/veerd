@@ -38,17 +38,13 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
         </div>
         <div className="mt-10 pt-8 border-t border-[#E0DDD8]">
           <a
-            href="#footer-signup"
-            onClick={(e) => {
-              e.preventDefault();
-              onClose();
-              setTimeout(() => {
-                document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
-              }, 300);
-            }}
+            href="https://apps.apple.com/us/app/veerd/id6760735474"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={onClose}
             className="block w-full text-center text-[16px] font-bold text-[#FAF7F2] bg-[#2C2C2C] px-6 py-3.5 rounded-[10px] cursor-pointer"
           >
-            Get early access
+            Download on the App Store
           </a>
         </div>
       </div>
@@ -117,14 +113,12 @@ export default function Nav() {
             </Link>
           ))}
           <a
-            href="#footer-signup"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
-            }}
+            href="https://apps.apple.com/us/app/veerd/id6760735474"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-sm font-bold text-background bg-textPrimary px-5 py-2.5 rounded-sm hover:opacity-90 transition-opacity cursor-pointer"
           >
-            Get early access
+            Download on the App Store
           </a>
         </div>
 

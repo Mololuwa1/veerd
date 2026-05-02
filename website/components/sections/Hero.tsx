@@ -72,11 +72,9 @@ export default function Hero() {
           {/* Buttons */}
           <div className="flex items-center gap-3 mb-5 md:mb-6">
             <a
-              href="#footer-signup"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById("footer-signup")?.scrollIntoView({ behavior: "smooth" });
-              }}
+              href="https://apps.apple.com/us/app/veerd/id6760735474"
+              target="_blank"
+              rel="noopener noreferrer"
               className="font-bold cursor-pointer text-[14px] md:text-[15px] inline-block"
               style={{
                 background: "#2C2C2C",
@@ -95,7 +93,7 @@ export default function Hero() {
                 (e.currentTarget.style.background = "#2C2C2C")
               }
             >
-              Get matched today
+              Download on the App Store
             </a>
             <a
               href="/how-it-works"
