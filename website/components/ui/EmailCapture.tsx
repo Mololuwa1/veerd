@@ -64,7 +64,7 @@ export default function EmailCapture({ placement = "inline" }: EmailCaptureProps
           {status === "loading" ? (
             <span className="inline-block w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin" />
           ) : (
-            "Get early access"
+            "Stay updated"
           )}
         </button>
       </div>
